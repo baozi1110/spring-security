@@ -1,0 +1,3 @@
+# Project exclude paths
+/my-security-core/target/
+/my-security-demo/target/

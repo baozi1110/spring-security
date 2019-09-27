@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-sercurity</artifactId>
+        <groupId>cn.qp</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <artifactId>my-security</artifactId>
+
+    <properties>
+        <my.security.version>1.0.0-SNAPSHOT</my.security.version>
+    </properties>
+
+    <modules>
+        <module>../my-security-app</module>
+        <module>../my-security-authorize</module>
+        <module>../my-security-browser</module>
+        <module>../my-security-core</module>
+        <module>../my-security-demo</module>
+    </modules>
+</project>

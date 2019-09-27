@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="my-security-browser" />
+        <module name="my-security-app" />
+        <module name="my-security-demo" />
+        <module name="my-security-core" />
+        <module name="my-security-authorize" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
