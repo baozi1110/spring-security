@@ -3,6 +3,7 @@ package cn.qp.web.controller;
 import cn.qp.dto.User;
 import cn.qp.dto.UserQueryCondition;
 import cn.qp.exception.UserNotExistException;
+import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
@@ -11,12 +12,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 访问接口
  * @author BaoZi
  * @date 2019/9/27 11:24
  */
