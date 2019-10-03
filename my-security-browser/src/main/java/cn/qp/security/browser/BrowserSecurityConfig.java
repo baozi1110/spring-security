@@ -1,5 +1,7 @@
 package cn.qp.security.browser;
 
+import cn.qp.security.core.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private SecurityProperties securityProperties;
+
     /**
      * 密码加密
      */
@@ -34,14 +39,15 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         // http.formLogin()// 指定通过表单登录，这种方式会先跳转到表单页，认证通过后才会跳转会原页面
         //http.httpBasic() 在访问的页面上弹出认证窗口，不会跳转
         http.formLogin()
-                .loginPage("/imooc-signIn.html")
+                .loginPage("/authentication/require")
                 //loginPage中自定义的登录URL，指定当访问该URL时，使用UsernamePasswordAuthenticationFilter来处理登录请求
                 .loginProcessingUrl("/authentication/form")
                 .and()
                 //表示以下都是对请求授权的配置
                 .authorizeRequests()
                 //指定当访问该页面时不需要身份认证，如果不加该选项会反复在访问的页面和自定义登录页面间重定向而报错
-                .antMatchers("/imooc-signIn.html").permitAll()
+                .antMatchers("/authentication/require",
+                        securityProperties.getBrowser().getSignInPage()).permitAll()
                 //任何请求
                 .anyRequest()
                 //都需要身份认证
