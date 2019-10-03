@@ -2,7 +2,6 @@ package cn.qp.web.controller;
 
 import cn.qp.dto.User;
 import cn.qp.dto.UserQueryCondition;
-import cn.qp.exception.UserNotExistException;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -19,6 +18,7 @@ import java.util.List;
 
 /**
  * 访问接口
+ *
  * @author BaoZi
  * @date 2019/9/27 11:24
  */
@@ -78,10 +78,10 @@ public class UserController {
     @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getInfo(@ApiParam("用户id") @PathVariable String id) {
-		throw new UserNotExistException(id);
-        // System.out.println("进入getInfo服务");
-        // User user = new User();
-        // user.setUsername("tom");
-        // return user;
+        // throw new UserNotExistException(id);
+        System.out.println("进入getInfo服务");
+        User user = new User();
+        user.setUsername("tom");
+        return user;
     }
 }

@@ -61,3 +61,15 @@ y
 Imy-security-demo/src/main/java/cn/qp/web/interceptor/TimeInterceptor.java,d\b\db161124e27aa81923ce2b942f6a6ecb37dd4d74
 o
 ?my-security-demo/src/main/java/cn/qp/web/filter/TimeFilter.java,a\1\a1aaf9ab5d463d0f0ebe0e6a7a40df971f8e3ff4
+\
+,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
+f
+6my-security-demo/src/main/java/cn/qp/dto/FileInfo.java,b\3\b3b3d7994c1137c5a7c586e6ebe3d2dc9ddafeb4
+u
+Emy-security-demo/src/main/java/cn/qp/web/controller/1569725266624.txt,f\a\fa21158eb3fda03d96497c1fb0472f7e0abef049
+o
+?my-security-demo/src/main/java/cn/qp/web/aspect/TimeAspect.java,e\c\ecb5befaf2dc13845609a8cc314c4211f5079b8a
+w
+Gmy-security-demo/src/main/java/cn/qp/web/controller/FileController.java,a\5\a53a9dbefca58884ce5b8896f5eeaa25229a0594
+ƒ
+Smy-security-browser/src/main/java/cn/qp/security/browser/BrowserSecurityConfig.java,2\c\2c4f8d91b3817a06a2fe6418c427db6ae31311e8

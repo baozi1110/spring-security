@@ -13,8 +13,15 @@ import java.util.Date;
  * @date 2019/9/27 11:27
  */
 public class User {
-    public interface UserSimpleView {};
-    public interface UserDetailView extends UserSimpleView {};
+    public interface UserSimpleView {
+    }
+
+    ;
+
+    public interface UserDetailView extends UserSimpleView {
+    }
+
+    ;
 
     private String id;
 

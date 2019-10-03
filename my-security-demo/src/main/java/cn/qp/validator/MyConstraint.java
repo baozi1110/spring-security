@@ -17,9 +17,9 @@ import java.lang.annotation.Target;
 public @interface MyConstraint {
     String message();
 
-    Class<?>[] groups() default { };
+    Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default { };
+    Class<? extends Payload>[] payload() default {};
 
     String field() default "";
 }

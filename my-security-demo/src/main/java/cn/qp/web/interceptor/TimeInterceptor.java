@@ -11,13 +11,15 @@ import java.util.Date;
 
 /**
  * 自定义过滤器
+ *
  * @author BaoZi
  */
 @Component
 public class TimeInterceptor implements HandlerInterceptor {
 
     /**
-     * (non-Javadoc)
+     * handler只是处理请求的控制器的方法，可以获取方法名等信息，但是不能获取到请求参数的值
+     *
      * @see org.springframework.web.servlet.HandlerInterceptor#preHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object)
      */
     @Override
@@ -46,9 +48,10 @@ public class TimeInterceptor implements HandlerInterceptor {
     }
 
     /**
-    * (non-Javadoc)
+     * (non-Javadoc)
+     *
+     * @param ex: 异常信息，如果没有异常为null
      * @see org.springframework.web.servlet.HandlerInterceptor#afterCompletion(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception)
-	 * @param ex: 异常信息，如果没有异常为null
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)

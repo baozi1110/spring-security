@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cn.qp.exception;
 
@@ -9,21 +9,21 @@ package cn.qp.exception;
  */
 public class UserNotExistException extends RuntimeException {
 
-	private static final long serialVersionUID = -6112780192479692859L;
-	
-	private String id;
-	
-	public UserNotExistException(String id) {
-		super("user not exist");
-		this.id = id;
-	}
+    private static final long serialVersionUID = -6112780192479692859L;
 
-	public String getId() {
-		return id;
-	}
+    private String id;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public UserNotExistException(String id) {
+        super("user not exist");
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
 }

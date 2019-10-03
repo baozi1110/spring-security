@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cn.qp.web.config;
 
@@ -22,36 +22,36 @@ import java.util.List;
  */
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
-	
-	@SuppressWarnings("unused")
-	@Autowired
-	private TimeInterceptor timeInterceptor;
 
-	/**
-	 * 使自定义的拦截器生效
-	 */
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(timeInterceptor);
-	}
+    @SuppressWarnings("unused")
+    @Autowired
+    private TimeInterceptor timeInterceptor;
+
+    /**
+     * 使自定义的拦截器生效
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(timeInterceptor);
+    }
 
 
-	/**
-	 * 自定义过滤器，相当于在TimeFilter上添加@Component
-	 */
-	@Bean
-	public FilterRegistrationBean timeFilter() {
-		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-		
-		TimeFilter timeFilter = new TimeFilter();
-		registrationBean.setFilter(timeFilter);
-		//自定义过滤器起作用的链接
-		List<String> urls = new ArrayList<>();
-		urls.add("/*");
-		registrationBean.setUrlPatterns(urls);
-		
-		return registrationBean;
-		
-	}
+    /**
+     * 自定义过滤器，相当于在TimeFilter上添加@Component
+     */
+    @Bean
+    public FilterRegistrationBean timeFilter() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+
+        TimeFilter timeFilter = new TimeFilter();
+        registrationBean.setFilter(timeFilter);
+        //自定义过滤器起作用的链接
+        List<String> urls = new ArrayList<>();
+        urls.add("/*");
+        registrationBean.setUrlPatterns(urls);
+
+        return registrationBean;
+
+    }
 
 }

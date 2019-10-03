@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cn.qp.service;
 
@@ -8,7 +8,7 @@ package cn.qp.service;
  *
  */
 public interface HelloService {
-	
-	String greeting(String name);
+
+    String greeting(String name);
 
 }

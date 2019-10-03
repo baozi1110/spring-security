@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cn.qp.web.controller;
 
@@ -25,19 +25,19 @@ import java.util.Map;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-	/**
-	 * UserNotExistException的异常在这个类里拦截加工
-	 * 它对异常的处理在interceptor之前，该方法存在的时候interceptor.afterCompletion()拦截到的异常为null，
-	 * 除非抛出的异常异常处理器中没有处理
-	 */
-	@ExceptionHandler(UserNotExistException.class)
-	@ResponseBody
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public Map<String, Object> handleUserNotExistException(UserNotExistException ex) {
-		Map<String, Object> result = new HashMap<>();
-		result.put("id", ex.getId());
-		result.put("message", ex.getMessage());
-		return result;
-	}
+    /**
+     * UserNotExistException的异常在这个类里拦截加工
+     * 它对异常的处理在interceptor之前，该方法存在的时候interceptor.afterCompletion()拦截到的异常为null，
+     * 除非抛出的异常异常处理器中没有处理
+     */
+    @ExceptionHandler(UserNotExistException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Map<String, Object> handleUserNotExistException(UserNotExistException ex) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("id", ex.getId());
+        result.put("message", ex.getMessage());
+        return result;
+    }
 
 }
