@@ -6,8 +6,7 @@ package cn.qp.security.core.properties;
 /**
  * 图片验证码配置项
  * 
- * @author zhailiang
- *
+ * @author BaoZi
  */
 public class ImageCodeProperties extends SmsCodeProperties {
 	

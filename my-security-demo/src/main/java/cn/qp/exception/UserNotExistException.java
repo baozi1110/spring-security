@@ -5,7 +5,7 @@ package cn.qp.exception;
 
 /**
  * 自定义异常，可以使用访问参数使异常更明确
- * @author zhailiang
+ * @author BaoZi
  */
 public class UserNotExistException extends RuntimeException {
 

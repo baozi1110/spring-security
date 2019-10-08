@@ -9,8 +9,7 @@ import org.springframework.boot.autoconfigure.social.SocialProperties;
  * QQ登录配置项
  * 
  * 
- * @author zhailiang
- *
+ * @author BaoZi
  */
 public class QQProperties extends SocialProperties {
 	

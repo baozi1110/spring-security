@@ -4,8 +4,7 @@
 package cn.qp.service;
 
 /**
- * @author zhailiang
- *
+ * @author BaoZi
  */
 public interface HelloService {
 

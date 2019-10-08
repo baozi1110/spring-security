@@ -5,8 +5,7 @@ package cn.qp.security.core.properties;
 
 /**
  * 验证码配置
- * @author zhailiang
- *
+ * @author BaoZi
  */
 public class ValidateCodeProperties {
 	

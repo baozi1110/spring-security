@@ -5,8 +5,7 @@ package cn.qp.security.core.properties;
 
 /**
  * 社交登录配置项
- * @author zhailiang
- *
+ * @author BaoZi
  */
 public class SocialProperties {
 	

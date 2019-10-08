@@ -5,8 +5,7 @@ package cn.qp.dto;
 
 
 /**
- * @author zhailiang
- *
+ * @author BaoZi
  */
 public class UserQueryCondition {
 

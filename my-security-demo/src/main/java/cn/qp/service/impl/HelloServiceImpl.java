@@ -1,6 +1,4 @@
-/**
- *
- */
+
 package cn.qp.service.impl;
 
 import cn.qp.service.HelloService;
@@ -8,8 +6,7 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * @author zhailiang
- *
+ * @author BaoZi
  */
 @Service
 public class HelloServiceImpl implements HelloService {

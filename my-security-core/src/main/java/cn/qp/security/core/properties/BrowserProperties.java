@@ -1,13 +1,9 @@
-/**
- * 
- */
 package cn.qp.security.core.properties;
 
 /**
  * 浏览器环境配置项
  * 
- * @author zhailiang
- *
+ * @author BaoZi
  */
 public class BrowserProperties {
 	

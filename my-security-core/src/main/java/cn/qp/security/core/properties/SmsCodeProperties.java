@@ -4,8 +4,7 @@
 package cn.qp.security.core.properties;
 
 /**
- * @author zhailiang
- *
+ * @author BaoZi
  */
 public class SmsCodeProperties {
 	

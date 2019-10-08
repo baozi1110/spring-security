@@ -6,8 +6,7 @@ package cn.qp.security.core.properties;
 /**
  * session管理相关配置项
  * 
- * @author zhailiang
- *
+ * @author BaoZi
  */
 public class SessionProperties {
 	

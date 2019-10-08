@@ -5,7 +5,6 @@ package cn.qp.security.core.properties;
 
 /**
  * @author BaoZi
- *
  */
 public interface SecurityConstants {
 	
