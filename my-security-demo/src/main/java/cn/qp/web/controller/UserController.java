@@ -9,6 +9,8 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,28 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    /**
+     * 获取认证信息的几种方式
+     *  1.通过 SecurityContextHolder.getContext().getAuthentication() 返回所有信息
+     *  2.方法参数使用 Authentication authentication,返回authentication对象，SpringSecurity的框架会自动赋值，返回所有信息
+     *  3.使用注解 @AuthenticationPrincipal UserDetails userDetails，返回的是principal的信息，即只有登录时用户的验证信息
+     */
+    @GetMapping("/me")
+    public Object getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
+        // return SecurityContextHolder.getContext().getAuthentication();
+
+//		String token = StringUtils.substringAfter(request.getHeader("Authorization"), "bearer ");
+//
+//		Claims claims = Jwts.parser().setSigningKey(securityProperties.getOauth2().getJwtSigningKey().getBytes("UTF-8"))
+//					.parseClaimsJws(token).getBody();
+//
+//		String company = (String) claims.get("company");
+//
+//		System.out.println(company);
+
+        return userDetails;
+    }
 
     @PostMapping
     @ApiOperation(value = "创建用户")
