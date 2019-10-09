@@ -1,5 +1,6 @@
 package cn.qp.security.browser.authentication;
 
+import cn.qp.security.browser.support.SimpleResponse;
 import cn.qp.security.core.properties.LoginResponseType;
 import cn.qp.security.core.properties.SecurityProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,7 +37,8 @@ public class ImoocAuthenticationFailureHandler extends SimpleUrlAuthenticationFa
         if (LoginResponseType.JSON.equals(securityProperties.getBrowser().getSignInResponseType())){
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString(exception));
+            //只返回最简单的错误消息，不要打印堆栈信息
+            response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(exception.getMessage())));
         }else {
             super.onAuthenticationFailure(request, response, exception);
         }

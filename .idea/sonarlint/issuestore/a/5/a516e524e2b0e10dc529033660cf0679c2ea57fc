@@ -1,0 +1,7 @@
+
+Lsquid:S1172*".Remove this unused method parameter "request".(íÂî‹8±ËËÕÚ-
+Isquid:S2325T"&Make "getRandColor" a "static" method.(¼¢’äúÿÿÿÿ8ÂúÉÕÚ-
+‚squid:S3242"_Use 'javax.servlet.ServletResponse' here; it is a more general type than 'HttpServletResponse'.(„ˆ—üÿÿÿÿ8­Ã¼ÕÚ-
+;squid:S2119U"Save and re-use this "Random".(¼İÅf8ÂúÉÕÚ-
+?squid:S1643C"Use a StringBuilder instead.(¡è†Ÿşÿÿÿÿ8ÂúÉÕÚ-
+;squid:S21192"Save and re-use this "Random".(¼İÅf8ÂúÉÕÚ-

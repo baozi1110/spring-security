@@ -115,3 +115,11 @@ Tmy-security-core/src/main/java/cn/qp/security/core/properties/BrowserProperties
 nmy-security-browser/src/main/java/cn/qp/security/browser/authentication/ImoocAuthenticationSuccessHandler.java,9\5\95903c2967ea103cfacc1bf3d52f16167f8d855d
 ž
 nmy-security-browser/src/main/java/cn/qp/security/browser/authentication/ImoocAuthenticationFailureHandler.java,3\a\3a99be415d324b56c88c94326ea8371be42be897
+‹
+[my-security-core/src/main/java/cn/qp/security/core/validate/code/ValidateCodeException.java,0\3\03d249d33e25a4288ac55cd9eb44f3ee954c18fa
+
+Omy-security-core/src/main/java/cn/qp/security/core/validate/code/ImageCode.java,f\8\f87e16d7ebb4dc28f947a07fcc05dee26731fecf
+Œ
+\my-security-core/src/main/java/cn/qp/security/core/validate/code/ValidateCodeController.java,a\5\a516e524e2b0e10dc529033660cf0679c2ea57fc
+ˆ
+Xmy-security-core/src/main/java/cn/qp/security/core/validate/code/ValidateCodeFilter.java,2\6\2635dae690e8421ca6a2f72a7621f5042459550b

@@ -3,17 +3,18 @@
  */
 package cn.qp.security.core.properties;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 图片验证码配置项
  * 
  * @author BaoZi
  */
+@Getter
+@Setter
 public class ImageCodeProperties extends SmsCodeProperties {
-	
-	public ImageCodeProperties() {
-		setLength(4);
-	}
-	
+
 	/**
 	 * 图片宽
 	 */
@@ -22,18 +23,13 @@ public class ImageCodeProperties extends SmsCodeProperties {
 	 * 图片高
 	 */
 	private int height = 23;
-	
-	public int getWidth() {
-		return width;
-	}
-	public void setWidth(int width) {
-		this.width = width;
-	}
-	public int getHeight() {
-		return height;
-	}
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
+	/**
+	 * 验证码长度
+	 */
+	private int length = 4;
+	/**
+	 * 验证码过期时间
+	 */
+	private int expireIn = 60;
+	private String url;
 }
