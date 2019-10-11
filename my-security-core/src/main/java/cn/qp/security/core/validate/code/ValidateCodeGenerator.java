@@ -10,8 +10,8 @@ import org.springframework.web.context.request.ServletWebRequest;
 public interface ValidateCodeGenerator {
     /**
      * 生成校验码
-     * @param request
-     * @return
+     * @param request 请求
+     * @return 校验码
      */
     ImageCode generate(ServletWebRequest request);
 }

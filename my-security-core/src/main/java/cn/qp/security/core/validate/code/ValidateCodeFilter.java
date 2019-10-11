@@ -3,12 +3,15 @@ package cn.qp.security.core.validate.code;
 import cn.qp.security.core.properties.SecurityProperties;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.web.bind.ServletRequestBindingException;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -53,8 +56,10 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
     @Override
     public void afterPropertiesSet() throws ServletException{
         super.afterPropertiesSet();
-        String[] configUrls = StringUtils.split(securityProperties.getCode().getImage().getUrl(),",");
-        urls.addAll(Arrays.asList(configUrls));
+        String[] configUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(securityProperties.getCode().getImage().getUrl(),",");
+        if (ArrayUtils.isNotEmpty(configUrls)){
+            urls.addAll(Arrays.asList(configUrls));
+        }
         urls.add("/authentication/form");
     }
 
@@ -80,7 +85,31 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
         filterChain.doFilter(request, response);
     }
 
-    private void validate(ServletWebRequest servletWebRequest) {
+    private void validate(ServletWebRequest request) throws ServletRequestBindingException {
+
+        ImageCode codeInSession = (ImageCode) sessionStrategy.getAttribute(request,
+                ValidateCodeController.SESSION_KEY);
+
+        String codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(), "imageCode");
+
+        if (StringUtils.isBlank(codeInRequest)) {
+            throw new ValidateCodeException("验证码的值不能为空");
+        }
+
+        if(codeInSession == null){
+            throw new ValidateCodeException("验证码不存在");
+        }
+
+        if(codeInSession.isExpried()){
+            sessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
+            throw new ValidateCodeException("验证码已过期");
+        }
+
+        if(!StringUtils.equals(codeInSession.getCode(), codeInRequest)) {
+            throw new ValidateCodeException("验证码不匹配");
+        }
+
+        sessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
     }
 
 }

@@ -7,11 +7,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.social.security.SpringSocialConfigurer;
+
+import javax.sql.DataSource;
 
 /**
  * 浏览器环境下安全配置主类
@@ -29,18 +35,39 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationFailureHandler imoocAuthenticationFailureHandler;
 
+    @Autowired
+    private DataSource dataSource;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    private SpringSocialConfigurer imoocSocialConfigurer;
+
     /**
      * 密码加密
      */
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    /**
+     * 永久令牌存储库
+     */
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        //创建存储token的数据库，只能用一次，否则报错
+        // tokenRepository.setCreateTableOnStartup(true);
+        return tokenRepository;
     }
 
     /**
      * 重写此方法以配置{@link HttpSecurity}
      *
-     * @param http the {@link HttpSecurity} to modify
+     * @param http the HttpSecurity to modify
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -63,6 +90,12 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(imoocAuthenticationSuccessHandler)
                 //自定义的登录失败处理器
                 .failureHandler(imoocAuthenticationFailureHandler)
+                //配置rememberMe功能
+                .and()
+                .rememberMe()
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
+                .userDetailsService(userDetailsService)
                 .and()
                 //表示以下都是对请求授权的配置
                 .authorizeRequests()

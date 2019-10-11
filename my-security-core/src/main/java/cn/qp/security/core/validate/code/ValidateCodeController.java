@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 @RestController
 public class ValidateCodeController {
-    private static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
+    public static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
     @Autowired
@@ -38,7 +38,4 @@ public class ValidateCodeController {
         //将生成的图片写到接口响应中
         ImageIO.write(imageCode.getImage(),"JPEG",response.getOutputStream());
     }
-
-
-
 }
