@@ -1,4 +1,2 @@
 
-Osquid:S1213"8Move this variable to comply with Java Code Conventions.(»ÿÃ‘
-hsquid:S1699"JRemove this call from a constructor to the overridable "setLength" method.(œ—¾·8…‡ŞÙ-
-Osquid:S1213"8Move this variable to comply with Java Code Conventions.(¢ûˆ·
+Xsquid:S1258":Add a constructor to the class, or provide default values.( êğò8ñ‘òÚ-

@@ -2,7 +2,6 @@ package cn.qp.code;
 
 import cn.qp.security.core.validate.code.ImageCode;
 import cn.qp.security.core.validate.code.ValidateCodeGenerator;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
 /**
@@ -11,7 +10,7 @@ import org.springframework.web.context.request.ServletWebRequest;
  * @author BaoZi
  * @date 2019/10/9 10:50
  */
-@Component("imageCodeGenerator")
+// @Component("imageCodeGenerator")
 public class DemoImageCodeGenerator implements ValidateCodeGenerator {
     @Override
     public ImageCode generate(ServletWebRequest request) {

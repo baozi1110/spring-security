@@ -2,8 +2,6 @@ package cn.qp.web.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
 
 /**
  * 切片类
@@ -11,8 +9,8 @@ import org.springframework.stereotype.Component;
  * @author BaoZi
  * @date 2019/9/29 10:05
  */
-@Aspect
-@Component
+// @Aspect
+// @Component
 public class TimeAspect {
 
     /**
