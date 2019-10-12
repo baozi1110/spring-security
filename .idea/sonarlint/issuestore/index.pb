@@ -115,8 +115,6 @@ nmy-security-browser/src/main/java/cn/qp/security/browser/authentication/ImoocAu
 nmy-security-browser/src/main/java/cn/qp/security/browser/authentication/ImoocAuthenticationFailureHandler.java,3\a\3a99be415d324b56c88c94326ea8371be42be897
 ‹
 [my-security-core/src/main/java/cn/qp/security/core/validate/code/ValidateCodeException.java,0\3\03d249d33e25a4288ac55cd9eb44f3ee954c18fa
-
-Omy-security-core/src/main/java/cn/qp/security/core/validate/code/ImageCode.java,f\8\f87e16d7ebb4dc28f947a07fcc05dee26731fecf
 Œ
 \my-security-core/src/main/java/cn/qp/security/core/validate/code/ValidateCodeController.java,a\5\a516e524e2b0e10dc529033660cf0679c2ea57fc
 ˆ
@@ -129,8 +127,6 @@ O
 [my-security-core/src/main/java/cn/qp/security/core/validate/code/ValidateCodeGenerator.java,0\e\0ec222111199a396521c001cd090d2131c04fe00
 u
 Emy-security-demo/src/main/java/cn/qp/code/DemoImageCodeGenerator.java,4\b\4bdd4e7def74369958ef1846c071c0f2bbac777e
-ˆ
-Xmy-security-core/src/main/java/cn/qp/security/core/validate/code/ImageCodeGenerator.java,2\5\25acd86fc452111a8507638afd7d0e0e5d93ae58
 Œ
 \my-security-core/src/main/java/cn/qp/security/core/validate/code/ValidateCodeBeanConfig.java,e\2\e23cc6bf5d04dc78f0441b4c4784105ff115c36d
 w

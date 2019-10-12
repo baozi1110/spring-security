@@ -1,6 +1,7 @@
 package cn.qp.security.browser;
 
 import cn.qp.security.browser.support.SimpleResponse;
+import cn.qp.security.core.properties.SecurityConstants;
 import cn.qp.security.core.properties.SecurityProperties;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -41,7 +42,7 @@ public class BrowserSecurityController {
     /**
      * 当需要身份认证时跳转到这里
      */
-    @RequestMapping("/authentication/require")
+    @RequestMapping(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public SimpleResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -54,7 +55,7 @@ public class BrowserSecurityController {
             //如果是html请求就跳转到指定页面，不是则返回错误状态码
             if (StringUtils.endsWithIgnoreCase(targetUrl, ".html")) {
                 //跳转的页面第三个参数，如果用户配置了该值就用用的值，没有配置则用默认值
-                redirectStrategy.sendRedirect(request, response, securityProperties.getBrowser().getSignInPage());
+                redirectStrategy.sendRedirect(request, response, securityProperties.getBrowser().getLoginPage());
             }
         }
         return new SimpleResponse("访问的服务需要身份认证，请引导用户到登录页");

@@ -1,6 +1,7 @@
-package cn.qp.security.core.validate.code;
+package cn.qp.security.core.validate.code.image;
 
 import cn.qp.security.core.properties.SecurityProperties;
+import cn.qp.security.core.validate.code.ValidateCodeGenerator;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

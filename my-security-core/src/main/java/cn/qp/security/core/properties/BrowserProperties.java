@@ -1,10 +1,15 @@
 package cn.qp.security.core.properties;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 浏览器环境配置项
  * 
  * @author BaoZi
  */
+@Getter
+@Setter
 public class BrowserProperties {
 	
 	/**
@@ -14,7 +19,7 @@ public class BrowserProperties {
 	/**
 	 * 登录页面，当引发登录行为的url以html结尾时，会跳到这里配置的url上
 	 */
-	private String signInPage = SecurityConstants.DEFAULT_SIGN_IN_PAGE_URL;
+	private String loginPage = SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
 	/**
 	 * '记住我'功能的有效时间，默认1小时
 	 */
@@ -37,62 +42,4 @@ public class BrowserProperties {
 	 * 只在signInResponseType为REDIRECT时生效
 	 */
 	private String singInSuccessUrl;
-	
-
-	public String getSignInPage() {
-		return signInPage;
-	}
-
-	public void setSignInPage(String loginPage) {
-		this.signInPage = loginPage;
-	}
-
-	public LoginResponseType getSignInResponseType() {
-		return signInResponseType;
-	}
-
-	public void setSignInResponseType(LoginResponseType loginType) {
-		this.signInResponseType = loginType;
-	}
-
-	public int getRememberMeSeconds() {
-		return rememberMeSeconds;
-	}
-
-	public void setRememberMeSeconds(int rememberMeSeconds) {
-		this.rememberMeSeconds = rememberMeSeconds;
-	}
-
-	public String getSignUpUrl() {
-		return signUpUrl;
-	}
-
-	public void setSignUpUrl(String signUpUrl) {
-		this.signUpUrl = signUpUrl;
-	}
-
-	public SessionProperties getSession() {
-		return session;
-	}
-
-	public void setSession(SessionProperties session) {
-		this.session = session;
-	}
-
-	public String getSignOutUrl() {
-		return signOutUrl;
-	}
-
-	public void setSignOutUrl(String signOutUrl) {
-		this.signOutUrl = signOutUrl;
-	}
-
-	public String getSingInSuccessUrl() {
-		return singInSuccessUrl;
-	}
-
-	public void setSingInSuccessUrl(String singInSuccessUrl) {
-		this.singInSuccessUrl = singInSuccessUrl;
-	}
-	
 }

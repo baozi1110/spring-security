@@ -1,6 +1,9 @@
 package cn.qp.security.core.validate.code;
 
 import cn.qp.security.core.properties.SecurityProperties;
+import cn.qp.security.core.validate.code.image.ImageCodeGenerator;
+import cn.qp.security.core.validate.code.sms.DefaultSmsCodeSender;
+import cn.qp.security.core.validate.code.sms.SmsCodeSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -32,4 +35,14 @@ public class ValidateCodeBeanConfig {
         codeGenerator.setSecurityProperties(securityProperties);
         return codeGenerator;
     }
+
+    /**
+     * 短信验证码发送器
+     */
+    @Bean
+    @ConditionalOnMissingBean(SmsCodeSender.class)
+    public SmsCodeSender smsCodeSender() {
+        return new DefaultSmsCodeSender();
+    }
+
 }

@@ -1,21 +1,19 @@
 package cn.qp.security.browser;
 
+import cn.qp.security.core.authentication.AbstractChannelSecurityConfig;
+import cn.qp.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
+import cn.qp.security.core.properties.SecurityConstants;
 import cn.qp.security.core.properties.SecurityProperties;
-import cn.qp.security.core.validate.code.ValidateCodeFilter;
+import cn.qp.security.core.validate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
 
@@ -26,14 +24,12 @@ import javax.sql.DataSource;
  * @date 2019/9/30 10:23
  */
 @Configuration
-public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
+public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     @Autowired
     private SecurityProperties securityProperties;
-    @Autowired
-    private AuthenticationSuccessHandler imoocAuthenticationSuccessHandler;
 
     @Autowired
-    private AuthenticationFailureHandler imoocAuthenticationFailureHandler;
+    private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
     @Autowired
     private DataSource dataSource;
@@ -41,8 +37,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+
     @Autowired
-    private SpringSocialConfigurer imoocSocialConfigurer;
+    private ValidateCodeSecurityConfig validateCodeSecurityConfig;
 
     /**
      * 密码加密
@@ -71,43 +68,35 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //对validateCodeFilter进行配置和初始化
-        ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
-        validateCodeFilter.setAuthenticationFailureHandler(imoocAuthenticationFailureHandler);
-        validateCodeFilter.setSecurityProperties(securityProperties);
-        validateCodeFilter.afterPropertiesSet();
+        // 密码认证相关的配置
+        applyPasswordAuthenticationConfig(http);
 
-        // 执行框架默认的过滤器之前先执行指定的过滤器 validateCodeFilter
-        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin()
-                .loginPage("/authentication/require")
-                // 相当于springSecurity的默认配置
-                // http.formLogin()// 指定通过表单登录，这种方式会先跳转到表单页，认证通过后才会跳转会原页面
-                // http.httpBasic() 在访问的页面上弹出认证窗口，不会跳转
-                // loginPage中自定义的登录URL，指定当访问该URL时，使用UsernamePasswordAuthenticationFilter来处理登录请求
-                .loginProcessingUrl("/authentication/form")
-                //指向自定义的登录成功处理器
-                .successHandler(imoocAuthenticationSuccessHandler)
-                //自定义的登录失败处理器
-                .failureHandler(imoocAuthenticationFailureHandler)
+        // http.apply()来添加验证码相关或者手机短信相关的配置
+        http.apply(validateCodeSecurityConfig)
+                    .and()
+                .apply(smsCodeAuthenticationSecurityConfig)
+                    .and()
+                // 浏览器特有的配置
                 //配置rememberMe功能
-                .and()
                 .rememberMe()
                 .tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
                 .userDetailsService(userDetailsService)
-                .and()
+                    .and()
                 //表示以下都是对请求授权的配置
                 .authorizeRequests()
                 //指定当访问该页面时不需要身份认证，如果不加该选项会反复在访问的页面和自定义登录页面间重定向而报错
-                .antMatchers("/authentication/require",
-                        securityProperties.getBrowser().getSignInPage(),
-                        "/code/image").permitAll()
+                .antMatchers(
+                        SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
+                        SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
+                        securityProperties.getBrowser().getLoginPage(),
+                        SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*")
+                .permitAll()
                 //任何请求
                 .anyRequest()
                 //都需要身份认证
                 .authenticated()
-                .and()
+                    .and()
                 .csrf().disable();
 
     }
