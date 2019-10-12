@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 模拟在同一个应用两个线程间发送DeferredResult消息
+ * 持有DeferredResult对象的类
  * @author BaoZi
  */
 @Component
@@ -19,5 +19,5 @@ public class DeferredResultHolder {
     /**
      * key模拟订单号，value模拟处理结果
      */
-    private Map<String, DeferredResult<String>> map = new HashMap<String, DeferredResult<String>>();
+    private Map<String, DeferredResult<String>> map = new HashMap<>();
 }

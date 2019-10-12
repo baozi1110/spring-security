@@ -1,6 +1,6 @@
 package cn.qp.code;
 
-import cn.qp.security.core.validate.code.ImageCode;
+import cn.qp.security.core.validate.code.image.ImageCode;
 import cn.qp.security.core.validate.code.ValidateCodeGenerator;
 import org.springframework.web.context.request.ServletWebRequest;
 
