@@ -46,15 +46,16 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
 
 
     @Override
-    public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
+        public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
         //根据用户id查找用户信息
         logger.info("设计登录用户Id:{}" , userId);
         return buildUser(userId);
     }
 
     private SocialUserDetails buildUser(String userId) {
+        // 注意：实际上应该各自根据实际情况实现在数据库中查找用户的功能
         // 根据用户名查找用户信息
-        //根据查找到的用户信息判断用户是否被冻结
+        // 根据查找到的用户信息判断用户是否被冻结
         String password = passwordEncoder.encode("123456");
         logger.info("数据库密码是:{}" , password);
         return new SocialUser(userId, password,

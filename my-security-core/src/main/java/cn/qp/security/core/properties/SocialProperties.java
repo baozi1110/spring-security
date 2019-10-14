@@ -3,43 +3,24 @@
  */
 package cn.qp.security.core.properties;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 社交登录配置项
  * @author BaoZi
  */
+@Getter
+@Setter
 public class SocialProperties {
 	
 	/**
-	 * 社交登录功能拦截的url
+	 * 社交登录功能拦截的url，默认/auth，可以自己配置
 	 */
 	private String filterProcessesUrl = "/auth";
 
 	private QQProperties qq = new QQProperties();
 	
 	private WeixinProperties weixin = new WeixinProperties();
-
-	public QQProperties getQq() {
-		return qq;
-	}
-
-	public void setQq(QQProperties qq) {
-		this.qq = qq;
-	}
-
-	public String getFilterProcessesUrl() {
-		return filterProcessesUrl;
-	}
-
-	public void setFilterProcessesUrl(String filterProcessesUrl) {
-		this.filterProcessesUrl = filterProcessesUrl;
-	}
-
-	public WeixinProperties getWeixin() {
-		return weixin;
-	}
-
-	public void setWeixin(WeixinProperties weixin) {
-		this.weixin = weixin;
-	}
 	
 }

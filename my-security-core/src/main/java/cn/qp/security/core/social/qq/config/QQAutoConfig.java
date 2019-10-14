@@ -10,9 +10,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.social.connect.ConnectionFactory;
 
 /**
- * QQ登录的配置类
+ * QQ登录的配置类，创建连接工厂
+ *
  * ConditionalOnProperty注解作用：
- *  只有当存在指定的配置时该配置类才生效，如只有imooc.security.social.qq.app-id配置项存在才生效
+ *  只有当property文件中存在指定的配置时该配置类才生效，如只有imooc.security.social.qq.app-id配置项存在才生效
  * @author BaoZi
  */
 @Configuration

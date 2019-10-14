@@ -21,10 +21,14 @@ public class QQImpl extends AbstractOAuth2ApiBinding implements QQ {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
+    /**
+     * 构造方法，获取 openId
+     * @param accessToken 访问令牌，
+     * @param appId 应用id，将网站添加到qq互联时由qq分配
+     */
     public QQImpl(String accessToken, String appId) {
         //指示访问令牌应作为名为“access_token”的查询参数携带
         super(accessToken, TokenStrategy.ACCESS_TOKEN_PARAMETER);
-
         this.appId = appId;
 
         String url = String.format(URL_GET_OPENID, accessToken);
@@ -32,7 +36,7 @@ public class QQImpl extends AbstractOAuth2ApiBinding implements QQ {
 
         System.out.println(result);
 
-        this.openId = StringUtils.substringBetween(result, "\"openid\":", "}");
+        this.openId = StringUtils.substringBetween(result, "\"openid\":\"", "\"}");
     }
 
     @Override

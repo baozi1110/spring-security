@@ -1,2 +1,3 @@
 
-9squid:S1214	""Move constants to a class or enum.(ü¥âå
+¤squid:S1186-"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·÷Ù±þÿÿÿÿ8¦¶€÷Û-
+@squid:S1118-"Hide this public constructor.(·÷Ù±þÿÿÿÿ8×Ãù÷Û-
