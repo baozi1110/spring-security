@@ -5,11 +5,12 @@ import org.springframework.social.security.SpringSocialConfigurer;
 
 /**
  * 自定义的过滤器
- *
+ * <p>
  * 将{@link SocialAuthenticationFilter}添加到Spring Security的过滤器链的配置器
+ *
  * @author BaoZi
  */
-    public class ImoocSpringSocialConfigurer extends SpringSocialConfigurer {
+public class ImoocSpringSocialConfigurer extends SpringSocialConfigurer {
     private String filterProcessesUrl;
 
     public ImoocSpringSocialConfigurer(String filterProcessesUrl) {

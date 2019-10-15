@@ -4,6 +4,7 @@ import cn.qp.security.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
@@ -19,10 +20,12 @@ import javax.sql.DataSource;
 /**
  * 社交登录配置主类
  *
+ * 需要添加@Order(1)注解，使SocialConfig先注册，否则会默认使用InMemoryUsersConnectionRepository 导致ConnectionSignUp无法使用
  * @author BaoZi
  */
 @Configuration
 @EnableSocial
+@Order(1)
 public class SocialConfig extends SocialConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
@@ -62,11 +65,15 @@ public class SocialConfig extends SocialConfigurerAdapter {
     }
 
     /**
-     * ProviderSignInUtils 解决两个问题：
-     * 1.注册过程中如何拿到springsocial的信息
-     * 2.注册完成后如何把业务系统的userId传给springsocial
-     * @param connectionFactoryLocator 用来定位connectionFactory
-     * @return
+     * ProviderSignInUtils有两个作用：
+     * （1）从session里获取封装了第三方用户信息的Connection对象
+     * （2）将注册的用户信息与第三方用户信息（QQ信息）建立关系并将该关系插入到userconnection表里
+     * <p>
+     * 需要的两个参数：
+     * （1）ConnectionFactoryLocator 可以直接注册进来，用来定位ConnectionFactory
+     * （2）UsersConnectionRepository----》getUsersConnectionRepository(connectionFactoryLocator)
+     * 即我们配置的用来处理userconnection表的bean
+     *
      */
     @Bean
     public ProviderSignInUtils providerSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {

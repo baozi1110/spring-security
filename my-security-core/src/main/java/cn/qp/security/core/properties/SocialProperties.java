@@ -1,17 +1,13 @@
-/**
- * 
- */
+
 package cn.qp.security.core.properties;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * 社交登录配置项
  * @author BaoZi
  */
-@Getter
-@Setter
+@Data
 public class SocialProperties {
 	
 	/**

@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package cn.qp.security.core.validate.code;
 
 
