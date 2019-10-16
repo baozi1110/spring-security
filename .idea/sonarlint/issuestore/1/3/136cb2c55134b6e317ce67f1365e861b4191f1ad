@@ -1,0 +1,10 @@
+
+Rsquid:S2221'"4Catch a list of specific exception subtypes instead.(”ı¾8œ¢ÉÑÛ-
+‡squid:S1312"dMake the "logger" logger private static final and rename it to comply with the format "LOG(?:GER)?".(…¸éÙüÿÿÿÿ8œ¢ÉÑÛ-
+_squid:S3457$"AFormat specifiers should be used instead of string concatenation.(›Ç‰Ó8œ¢ÉÑÛ-
+¤%squid:RedundantThrowsDeclarationCheck""lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÀïÎ™8œ¢ÉÑÛ-
+dsquid:S3457+"AFormat specifiers should be used instead of string concatenation.(›ââ‚ÿÿÿÿÿ8œ¢ÉÑÛ-
+Fsquid:S1148("#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8œ¢ÉÑÛ-
+Xsquid:S1258":Add a constructor to the class, or provide default values.(ıÏºä8œ¢ÉÑÛ-
+Csquid:S1166'"%Either log or rethrow this exception.(”ı¾8œ¢ÉÑÛ-
+esquid:S00112""FDefine and throw a dedicated exception instead of using a generic one.(ÀïÎ™8œ¢ÉÑÛ-

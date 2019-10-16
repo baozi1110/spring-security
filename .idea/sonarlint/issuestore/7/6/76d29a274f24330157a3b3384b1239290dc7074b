@@ -1,0 +1,8 @@
+
+¥%squid:RedundantThrowsDeclarationCheck<"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(áíäú8†÷•õÛ-
+Fsquid:S1185F"(Remove this method to simply inherit it.(÷é­¬8†÷•õÛ-
+hsquid:TrailingCommentCheck+"6Move this trailing comment on the previous empty line.(  ®Ñûÿÿÿÿ8†÷•õÛ-
+Nsquid:S2160"+Override the "equals" method in this class.(äí¼ƒùÿÿÿÿ8†÷•õÛ-
+Isquid:S1948"+Make "principal" transient or serializable.(­ÅƒÑ8†÷•õÛ-
+=squid:S4926"Remove this "serialVersionUID".(ŽÜå8†÷•õÛ-
+osquid:S1699"QRemove this call from a constructor to the overridable "setAuthenticated" method.(¡¬®Í8†÷•õÛ-

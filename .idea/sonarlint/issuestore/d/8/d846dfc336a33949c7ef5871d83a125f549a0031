@@ -1,0 +1,4 @@
+
+‡squid:S1312"dMake the "logger" logger private static final and rename it to comply with the format "LOG(?:GER)?".(…¸éÙüÿÿÿÿ8ÖËªúØ-
+Ë%squid:RedundantThrowsDeclarationCheck1"’Remove the declaration of thrown exception 'org.springframework.security.core.userdetails.UsernameNotFoundException' which is a runtime exception.(ƒÈì8™ïÿÍÛ-
+Ë%squid:RedundantThrowsDeclarationCheck'"’Remove the declaration of thrown exception 'org.springframework.security.core.userdetails.UsernameNotFoundException' which is a runtime exception.(ÌÃŸ8²ß£úØ-
