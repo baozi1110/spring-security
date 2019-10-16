@@ -1,6 +1,4 @@
-
 package cn.qp.security.core.social.weixin.config;
-
 
 import cn.qp.security.core.properties.SecurityProperties;
 import cn.qp.security.core.properties.WeixinProperties;

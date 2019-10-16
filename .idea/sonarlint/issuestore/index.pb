@@ -220,3 +220,17 @@ emy-security-core/src/main/java/cn/qp/security/core/social/weixin/connect/Weixin
 bmy-security-core/src/main/java/cn/qp/security/core/social/weixin/connect/WeixinOAuth2Template.java,5\7\5766c12c63bce705fc730889544509d0cc942bd0
 w
 Gmy-security-demo/src/main/java/cn/qp/security/DemoConnectionSignUp.java,7\0\7055e77005e47721f1ef5739ccdd57ead9e3fbe6
+o
+?my-security-browser/src/main/resources/static/imooc-signUp.html,9\1\91aad13be7e8671a3028bc6b5dada31d4423e40c
+p
+@my-security-browser/src/main/resources/static/imooc-banding.html,e\c\ec25dba9dfc379c950f94c9f5205325b8b4b8a61
+à
+Xmy-security-core/src/main/java/cn/qp/security/core/social/ImoocConnectionStatusView.java,7\5\7504c0e4a3da45be20527bce80e69cf188c680db
+
+Omy-security-core/src/main/java/cn/qp/security/core/social/ImoocConnectView.java,2\e\2e87d46ea5560ef9e53c66e65e8046fcdcfb3ddd
+ç
+]my-security-browser/src/main/java/cn/qp/security/browser/session/AbstractSessionStrategy.java,8\c\8c4561d1281869a6ac29b5e8e54a3b8de8444cc6
+ë
+amy-security-browser/src/main/java/cn/qp/security/browser/session/ImoocInvalidSessionStrategy.java,f\1\f1ed1816f8743e52e53523fac01b1800d8067361
+ë
+amy-security-browser/src/main/java/cn/qp/security/browser/session/ImoocExpiredSessionStrategy.java,b\b\bb5cefc903265b3a67ef658c09c9973cf648f42b

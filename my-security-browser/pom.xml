@@ -17,6 +17,7 @@
             <artifactId>my-security-core</artifactId>
             <version>${my.security.version}</version>
         </dependency>
+        <!--session管理的依赖-->
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>

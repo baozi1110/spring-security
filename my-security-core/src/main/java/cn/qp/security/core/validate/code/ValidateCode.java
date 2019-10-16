@@ -1,12 +1,14 @@
 package cn.qp.security.core.validate.code;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * 验证码信息封装类
+ * 需要进行序列化，因为验证码信息放入到了session中，session使用了redis，Redis中的数据都需要是可序列化的
  * @author BaoZi
  */
-public class ValidateCode {
+public class ValidateCode implements Serializable {
     private String code;
 
     private LocalDateTime expireTime;
