@@ -250,3 +250,17 @@ fmy-security-app/src/main/java/cn/qp/security/app/authentication/ImoocAuthentica
 Omy-security-app/src/main/java/cn/qp/security/app/ImoocResourceServerConfig.java,e\2\e2a814c12bf81e9ee8a01045fa97035b7f1c3612
 –
 fmy-security-app/src/main/java/cn/qp/security/app/authentication/ImoocAuthenticationSuccessHandler.java,8\3\83bcc40a387e1aab91a2c6435242ba87d7da515b
+”
+dmy-security-app/src/main/java/cn/qp/security/app/validate/code/impl/RedisValidateCodeRepository.java,a\3\a32e3145d1c3dfa44ee95596c2a4cddfb24abfa8
+ž
+nmy-security-browser/src/main/java/cn/qp/security/browser/validate/code/impl/SessionValidateCodeRepository.java,5\8\587a3886936e5afa8b64c757c8c3891d99d38da5
+Œ
+\my-security-core/src/main/java/cn/qp/security/core/validate/code/ValidateCodeRepository.java,d\3\d37bd39bf82e5bef9626d18c3fb9e7f4115ca395
+–
+fmy-security-app/src/main/java/cn/qp/security/app/authentication/openid/OpenIdAuthenticationFilter.java,c\f\cf8291fe95d7d5a0fcc9a994102dec4a52bac319
+•
+emy-security-app/src/main/java/cn/qp/security/app/authentication/openid/OpenIdAuthenticationToken.java,0\6\06d54b773335fd4168a7f462a04b04e2210b6b68
+˜
+hmy-security-app/src/main/java/cn/qp/security/app/authentication/openid/OpenIdAuthenticationProvider.java,f\4\f4aa26c999f3b9eb3dfec9a9a0a045bfaaa81e46
+ž
+nmy-security-app/src/main/java/cn/qp/security/app/authentication/openid/OpenIdAuthenticationSecurityConfig.java,d\5\d54008776b2b1cb9aad609f79451128c229dab45

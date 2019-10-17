@@ -1,4 +1,2 @@
 
-‰squid:UselessImportCheck"YRemove this unused import 'org.springframework.security.crypto.password.PasswordEncoder'.(‰¡ßáÿÿÿÿÿ8ñ¸Éšİ-
-~squid:S3305'"`Inject this field value directly into "persistentTokenRepository", the only method that uses it.(â–ŠĞ8Í¢Ãšİ-
-squid:UselessImportCheck"]Remove this unused import 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder'.(åÅÚ…ûÿÿÿÿ8ñ¸Éšİ-
+~squid:S3305%"`Inject this field value directly into "persistentTokenRepository", the only method that uses it.(â–ŠĞ8Í¢Ãšİ-

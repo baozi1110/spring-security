@@ -16,7 +16,10 @@ import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Component;
 
 /**
- * @author zhailiang
+ * openId身份验证安全配置
+ *
+ * 将openId身份验证相关的过滤器和provider等添加到安全环境中
+ * @author BaoZi
  *
  */
 @Component
@@ -37,17 +40,17 @@ public class OpenIdAuthenticationSecurityConfig extends SecurityConfigurerAdapte
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		
-		OpenIdAuthenticationFilter OpenIdAuthenticationFilter = new OpenIdAuthenticationFilter();
-		OpenIdAuthenticationFilter.setAuthenticationManager(http.getSharedObject(AuthenticationManager.class));
-		OpenIdAuthenticationFilter.setAuthenticationSuccessHandler(imoocAuthenticationSuccessHandler);
-		OpenIdAuthenticationFilter.setAuthenticationFailureHandler(imoocAuthenticationFailureHandler);
+		OpenIdAuthenticationFilter openIdAuthenticationFilter = new OpenIdAuthenticationFilter();
+		openIdAuthenticationFilter.setAuthenticationManager(http.getSharedObject(AuthenticationManager.class));
+		openIdAuthenticationFilter.setAuthenticationSuccessHandler(imoocAuthenticationSuccessHandler);
+		openIdAuthenticationFilter.setAuthenticationFailureHandler(imoocAuthenticationFailureHandler);
 		
-		OpenIdAuthenticationProvider OpenIdAuthenticationProvider = new OpenIdAuthenticationProvider();
-		OpenIdAuthenticationProvider.setUserDetailsService(userDetailsService);
-		OpenIdAuthenticationProvider.setUsersConnectionRepository(usersConnectionRepository);
+		OpenIdAuthenticationProvider openIdAuthenticationProvider = new OpenIdAuthenticationProvider();
+		openIdAuthenticationProvider.setUserDetailsService(userDetailsService);
+		openIdAuthenticationProvider.setUsersConnectionRepository(usersConnectionRepository);
 		
-		http.authenticationProvider(OpenIdAuthenticationProvider)
-			.addFilterAfter(OpenIdAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+		http.authenticationProvider(openIdAuthenticationProvider)
+			.addFilterAfter(openIdAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		
 	}
 

@@ -16,7 +16,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author zhailiang
+ * 验证OpenIdAuthenticationToken
+ * @author BaoZi
  *
  */
 public class OpenIdAuthenticationProvider implements AuthenticationProvider {
@@ -25,11 +26,14 @@ public class OpenIdAuthenticationProvider implements AuthenticationProvider {
 
 	private UsersConnectionRepository usersConnectionRepository;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.security.authentication.AuthenticationProvider#
-	 * authenticate(org.springframework.security.core.Authentication)
+	/**
+	 * 验证的逻辑
+	 * 根据authentication中的openId和providerId在usersConnection数据库中查找对应的用户，返回userId
+	 * 读取出用户信息，重新组装OpenIdAuthenticationToken返回
+	 *
+	 * @param authentication 身份验证请求对象。
+	 * @return 包含凭据的经过完全认证的对象
+	 * @throws AuthenticationException AuthenticationException
 	 */
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -59,12 +63,7 @@ public class OpenIdAuthenticationProvider implements AuthenticationProvider {
 		return authenticationResult;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.security.authentication.AuthenticationProvider#
-	 * supports(java.lang.Class)
-	 */
+
 	@Override
 	public boolean supports(Class<?> authentication) {
 		return OpenIdAuthenticationToken.class.isAssignableFrom(authentication);

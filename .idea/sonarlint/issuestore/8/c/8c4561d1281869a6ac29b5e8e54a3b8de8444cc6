@@ -1,6 +1,6 @@
 
 Ssquid:S2629@"7Use the built-in formatting to construct this argument.(ƒ¯ŞËúÿÿÿÿ
-{squid:S1312"dMake the "logger" logger private static final and rename it to comply with the format "LOG(?:GER)?".(öô¿¼
-Jsquid:S1172O".Remove this unused method parameter "request".(”¿Èûÿÿÿÿ
-]squid:S3457@"AFormat specifiers should be used instead of string concatenation.(ƒ¯ŞËúÿÿÿÿ
 Šsquid:S00118"mMake this class abstract or rename it, since it matches the regular expression '^Abstract[A-Z][a-zA-Z0-9]*$'.(„é§ûøÿÿÿÿ
+{squid:S1312"dMake the "logger" logger private static final and rename it to comply with the format "LOG(?:GER)?".(öô¿¼
+]squid:S3457@"AFormat specifiers should be used instead of string concatenation.(ƒ¯ŞËúÿÿÿÿ
+Jsquid:S1172O".Remove this unused method parameter "request".(”¿Èûÿÿÿÿ

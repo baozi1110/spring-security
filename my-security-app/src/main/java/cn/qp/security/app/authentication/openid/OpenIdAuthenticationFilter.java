@@ -3,7 +3,8 @@
  */
 package cn.qp.security.app.authentication.openid;
 
-import com.imooc.security.core.properties.SecurityConstants;
+
+import cn.qp.security.core.properties.SecurityConstants;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -15,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author zhailiang
+ * 拦截请求，获取请求中openId相关信息封装到token中的过滤器
+ * @author BaoZi
  *
  */
 public class OpenIdAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
@@ -36,9 +38,10 @@ public class OpenIdAuthenticationFilter extends AbstractAuthenticationProcessing
 	// ~ Methods
 	// ========================================================================================================
 
+	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
-		if (postOnly && !request.getMethod().equals("POST")) {
+		if (postOnly && !"POST".equals(request.getMethod())) {
 			throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
 		}
 
@@ -96,8 +99,6 @@ public class OpenIdAuthenticationFilter extends AbstractAuthenticationProcessing
 	 * Sets the parameter name which will be used to obtain the username from
 	 * the login request.
 	 *
-	 * @param usernameParameter
-	 *            the parameter name. Defaults to "username".
 	 */
 	public void setOpenIdParameter(String openIdParameter) {
 		Assert.hasText(openIdParameter, "Username parameter must not be empty or null");

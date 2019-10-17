@@ -2,6 +2,7 @@ package cn.qp.security.app;
 
 import cn.qp.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import cn.qp.security.core.properties.SecurityConstants;
+import cn.qp.security.app.authentication.openid.OpenIdAuthenticationSecurityConfig;
 import cn.qp.security.core.properties.SecurityProperties;
 import cn.qp.security.core.validate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,10 @@ public class ImoocResourceServerConfig extends ResourceServerConfigurerAdapter {
     private SpringSocialConfigurer imoocSocialSecurityConfig;
 
     @Autowired
+    private OpenIdAuthenticationSecurityConfig openIdAuthenticationSecurityConfig;
+
+
+    @Autowired
     private SecurityProperties securityProperties;
 
     @Override
@@ -49,13 +54,15 @@ public class ImoocResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .failureHandler(imoocAuthenticationFailureHandler);
 
         http.apply(validateCodeSecurityConfig)
-                .and()
+                    .and()
                 .apply(smsCodeAuthenticationSecurityConfig)
-                .and()
+                    .and()
                 .apply(imoocSocialSecurityConfig)
-                .and()
+                    .and()
+                .apply(openIdAuthenticationSecurityConfig)
+                    .and()
                 .authorizeRequests()
-                .antMatchers(
+                    .antMatchers(
                         SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                         SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
                         securityProperties.getBrowser().getLoginPage(),

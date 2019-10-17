@@ -10,7 +10,8 @@ import org.springframework.security.core.SpringSecurityCoreVersion;
 import java.util.Collection;
 
 /**
- * @author zhailiang
+ * 封装登录信息的token
+ * @author BaoZi
  *
  */
 public class OpenIdAuthenticationToken extends AbstractAuthenticationToken {
@@ -46,7 +47,6 @@ public class OpenIdAuthenticationToken extends AbstractAuthenticationToken {
 	 * authentication token.
 	 *
 	 * @param principal
-	 * @param credentials
 	 * @param authorities
 	 */
 	public OpenIdAuthenticationToken(Object principal,
@@ -59,10 +59,12 @@ public class OpenIdAuthenticationToken extends AbstractAuthenticationToken {
 	// ~ Methods
 	// ========================================================================================================
 
+	@Override
 	public Object getCredentials() {
 		return null;
 	}
 
+	@Override
 	public Object getPrincipal() {
 		return this.principal;
 	}
@@ -71,6 +73,7 @@ public class OpenIdAuthenticationToken extends AbstractAuthenticationToken {
 		return providerId;
 	}
 
+	@Override
 	public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
 		if (isAuthenticated) {
 			throw new IllegalArgumentException(
