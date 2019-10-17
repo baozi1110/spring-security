@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
  * @author BaoZi
  *
  */
-@Component
+@Component("openIdAuthenticationSecurityConfig")
 public class OpenIdAuthenticationSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 	
 	@Autowired

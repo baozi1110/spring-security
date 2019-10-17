@@ -1,6 +1,7 @@
 package cn.qp.security.core.social;
 
 import cn.qp.security.core.properties.SecurityProperties;
+import cn.qp.security.core.support.SocialAuthenticationFilterPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,6 +37,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
     @Autowired(required = false)
     private ConnectionSignUp connectionSignUp;
 
+    @Autowired(required = false)
+    private SocialAuthenticationFilterPostProcessor socialAuthenticationFilterPostProcessor;
+
     // @Autowired(required = false)
     // private SocialAuthenticationFilterPostProcessor socialAuthenticationFilterPostProcessor;
 
@@ -61,6 +65,8 @@ public class SocialConfig extends SocialConfigurerAdapter {
         ImoocSpringSocialConfigurer configurer = new ImoocSpringSocialConfigurer(filterProcessesUrl);
         // 指定当第三方登录完成后找不到用户时跳转的注册页面
         configurer.signupUrl(securityProperties.getBrowser().getSignUpUrl());
+        // 设定SocialAuthenticationFilter后处理器，用于在不同环境下个性化社交登录的配置
+        configurer.setSocialAuthenticationFilterPostProcessor(socialAuthenticationFilterPostProcessor);
         return configurer;
     }
 
