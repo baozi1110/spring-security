@@ -57,7 +57,6 @@
         </plugins>
     </build>
     <modules>
-        <module>my-security</module>
         <module>my-security-app</module>
         <module>my-security-authorize</module>
         <module>my-security-browser</module>

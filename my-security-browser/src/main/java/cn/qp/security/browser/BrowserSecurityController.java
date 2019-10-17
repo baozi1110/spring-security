@@ -1,9 +1,9 @@
 package cn.qp.security.browser;
 
-import cn.qp.security.browser.support.SimpleResponse;
 import cn.qp.security.browser.support.SocialUserInfo;
 import cn.qp.security.core.properties.SecurityConstants;
 import cn.qp.security.core.properties.SecurityProperties;
+import cn.qp.security.core.support.SimpleResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

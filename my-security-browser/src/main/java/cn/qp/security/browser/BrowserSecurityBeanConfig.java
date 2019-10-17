@@ -19,6 +19,7 @@ import org.springframework.security.web.session.SessionInformationExpiredStrateg
  */
 @Configuration
 public class BrowserSecurityBeanConfig {
+
     @Autowired
     private SecurityProperties securityProperties;
 

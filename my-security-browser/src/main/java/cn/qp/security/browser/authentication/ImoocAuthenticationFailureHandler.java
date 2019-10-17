@@ -1,8 +1,8 @@
 package cn.qp.security.browser.authentication;
 
-import cn.qp.security.browser.support.SimpleResponse;
 import cn.qp.security.core.properties.LoginResponseType;
 import cn.qp.security.core.properties.SecurityProperties;
+import cn.qp.security.core.support.SimpleResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

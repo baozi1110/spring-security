@@ -14,5 +14,8 @@
         <module name="my-security-authorize" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="my-security" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

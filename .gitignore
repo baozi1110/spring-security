@@ -1,6 +1,7 @@
 # Project exclude paths
 /my-security-core/target/
 /my-security-demo/target/
+/my-security-browser/target/
 /my-security/target/
 /my-security-app/target/
 /my-security-authorize/target/
@@ -11,4 +12,5 @@
 .idea/sonarlint/issuestore/d/3/
 .idea/sonarlint/issuestore/d/6/
 .idea/sonarlint/issuestore/e/2/
+.idea/sonarlint/issuestore/0/7/
 

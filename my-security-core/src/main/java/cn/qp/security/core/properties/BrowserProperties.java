@@ -42,4 +42,9 @@ public class BrowserProperties {
 	 * 只在signInResponseType为REDIRECT时生效
 	 */
 	private String singInSuccessUrl;
+
+	/**
+	 * 登录类型
+	 */
+	private LoginResponseType loginType = LoginResponseType.JSON;
 }

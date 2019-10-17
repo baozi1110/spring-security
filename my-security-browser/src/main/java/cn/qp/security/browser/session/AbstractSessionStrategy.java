@@ -3,7 +3,7 @@
  */
 package cn.qp.security.browser.session;
 
-import cn.qp.security.browser.support.SimpleResponse;
+import cn.qp.security.core.support.SimpleResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
