@@ -12,11 +12,11 @@
 
     <artifactId>my-security-demo</artifactId>
     <dependencies>
-        <!--        <dependency>-->
-        <!--            <groupId>cn.qp</groupId>-->
-        <!--            <artifactId>my-security-browser</artifactId>-->
-        <!--            <version>${my.security.version}</version>-->
-        <!--        </dependency>-->
+<!--                <dependency>-->
+<!--                    <groupId>cn.qp</groupId>-->
+<!--                    <artifactId>my-security-browser</artifactId>-->
+<!--                    <version>${my.security.version}</version>-->
+<!--                </dependency>-->
 
         <dependency>
             <groupId>cn.qp</groupId>

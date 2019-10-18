@@ -1,3 +1,3 @@
 
-Ÿsquid:S4603"Consider replacing "@SpringBootApplication" by a list of beans imported with @Import to speed-up the start-up of the application.(ûª¢F8ëÒİçÖ-
-dsquid:S4604"GExclude from the auto-configuration mechanism the beans you don't need.(ûª¢F8ëÒİçÖ-
+Ÿsquid:S4603"Consider replacing "@SpringBootApplication" by a list of beans imported with @Import to speed-up the start-up of the application.(ûª¢F8ëÒİçÖ-
+dsquid:S4604"GExclude from the auto-configuration mechanism the beans you don't need.(ûª¢F8ëÒİçÖ-

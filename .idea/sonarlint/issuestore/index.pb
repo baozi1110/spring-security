@@ -264,3 +264,17 @@ emy-security-app/src/main/java/cn/qp/security/app/authentication/openid/OpenIdAu
 hmy-security-app/src/main/java/cn/qp/security/app/authentication/openid/OpenIdAuthenticationProvider.java,f\4\f4aa26c999f3b9eb3dfec9a9a0a045bfaaa81e46
 ž
 nmy-security-app/src/main/java/cn/qp/security/app/authentication/openid/OpenIdAuthenticationSecurityConfig.java,d\5\d54008776b2b1cb9aad609f79451128c229dab45
+—
+gmy-security-core/src/main/java/cn/qp/security/core/support/SocialAuthenticationFilterPostProcessor.java,1\5\15c94454a3dc73b09051942e1cd59c0bafcc9e6b
+œ
+lmy-security-app/src/main/java/cn/qp/security/app/social/impl/AppSocialAuthenticationFilterPostProcessor.java,5\6\563cc893147d2aab7d112a7944c91a0e3211a9d6
+~
+Nmy-security-core/src/main/java/cn/qp/security/core/support/SocialUserInfo.java,1\a\1aa50ea90546705ef6cfc2fa7ec7fc452f9b0e72
+‰
+Ymy-security-app/src/main/java/cn/qp/security/app/SpringSocialConfigurerPostProcessor.java,9\7\97d62eb98ce015f77c4d879025aed44f12490e9e
+‚
+Rmy-security-app/src/main/java/cn/qp/security/app/exception/AppSecretException.java,6\0\60dd303c0a63c32acfd2b23df737fed8a06b3002
+{
+Kmy-security-app/src/main/java/cn/qp/security/app/AppSecurityController.java,5\f\5f23d6f4ba05030f1e0e6cf7cd006d75bd155da8
+{
+Kmy-security-app/src/main/java/cn/qp/security/app/social/AppSingUpUtils.java,6\d\6d73349b3822caabe2266dd2226d0a778f74db4c

@@ -1,12 +1,12 @@
 
-Xsquid:S3457S"AFormat specifiers should be used instead of string concatenation.(‰ùÄş
+Ksquid:S2221\"4Catch a list of specific exception subtypes instead.(”ı¾
 :squid:S1309P"#Suppressing warnings is not allowed(²°Ò¶
+Xsquid:S3457S"AFormat specifiers should be used instead of string concatenation.(‰ùÄş
+Xsquid:S3457W"AFormat specifiers should be used instead of string concatenation.(ˆ–íú
 <squid:S1166\"%Either log or rethrow this exception.(”ı¾
 €squid:S1312$"dMake the "logger" logger private static final and rename it to comply with the format "LOG(?:GER)?".(…¸éÙüÿÿÿÿ
-ssquid:S2629S"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(‰ùÄş
 ^squid:S00112d"FDefine and throw a dedicated exception instead of using a generic one.(ìê´
-Xsquid:S3457W"AFormat specifiers should be used instead of string concatenation.(ˆ–íú
-„squid:S1699("hRemove this call from a constructor to the overridable "setUseParametersForClientAuthentication" method.(›“ÖÌıÿÿÿÿ
-Ksquid:S2221\"4Catch a list of specific exception subtypes instead.(”ı¾
+ssquid:S2629S"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(‰ùÄş
 Nsquid:S2629W"7Use the built-in formatting to construct this argument.(ˆ–íú
+„squid:S1699("hRemove this call from a constructor to the overridable "setUseParametersForClientAuthentication" method.(›“ÖÌıÿÿÿÿ
 ?squid:S1148]"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
