@@ -3,16 +3,18 @@ package cn.qp.web.controller;
 import cn.qp.dto.User;
 import cn.qp.dto.UserQueryCondition;
 import cn.qp.security.app.social.AppSingUpUtils;
+import cn.qp.security.core.properties.SecurityProperties;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.jsonwebtoken.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.Authentication;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,8 @@ import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +37,15 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
 
     @Autowired
     private AppSingUpUtils appSingUpUtils;
+
+    @Autowired
+    private SecurityProperties securityProperties;
 
     @PostMapping("/regist")
     public void regist(User user, HttpServletRequest request) {
@@ -55,20 +63,36 @@ public class UserController {
      *  2.方法参数使用 Authentication authentication,返回authentication对象，SpringSecurity的框架会自动赋值，返回所有信息
      *  3.使用注解 @AuthenticationPrincipal UserDetails userDetails，返回的是principal的信息，即只有登录时用户的验证信息
      */
+//     @GetMapping("/me")
+//     public Object getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
+//         // return SecurityContextHolder.getContext().getAuthentication();
+//
+// //		String token = StringUtils.substringAfter(request.getHeader("Authorization"), "bearer ");
+// //		Claims claims = Jwts.parser().setSigningKey(securityProperties.getOauth2().getJwtSigningKey().getBytes("UTF-8"))
+// //					.parseClaimsJws(token).getBody();
+// //		String company = (String) claims.get("company");
+// //		System.out.println(company);
+//
+//         return userDetails;
+//     }
+
+    /**
+     * 使用jwtToken获取用户信息
+     */
     @GetMapping("/me")
-    public Object getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
-        // return SecurityContextHolder.getContext().getAuthentication();
+    public Object getCurrentUser(Authentication user, HttpServletRequest request) throws ExpiredJwtException, UnsupportedJwtException, MalformedJwtException, SignatureException, IllegalArgumentException, UnsupportedEncodingException {
 
-//		String token = StringUtils.substringAfter(request.getHeader("Authorization"), "bearer ");
-//
-//		Claims claims = Jwts.parser().setSigningKey(securityProperties.getOauth2().getJwtSigningKey().getBytes("UTF-8"))
-//					.parseClaimsJws(token).getBody();
-//
-//		String company = (String) claims.get("company");
-//
-//		System.out.println(company);
+        // String token = StringUtils.substringAfter(request.getHeader("Authorization"), "bearer ");
+        String token = StringUtils.substringAfter(request.getHeader("Authorization"), "Bearer ");
 
-        return userDetails;
+        Claims claims = Jwts.parser().setSigningKey(securityProperties.getOauth2().getJwtSigningKey().getBytes(StandardCharsets.UTF_8))
+                .parseClaimsJws(token).getBody();
+        //获取jwtToken中的信息
+        String company = (String) claims.get("company");
+
+        System.out.println(company);
+
+        return user;
     }
 
     @PostMapping
