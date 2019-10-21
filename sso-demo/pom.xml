@@ -2,28 +2,38 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cn.qp</groupId>
-    <artifactId>spring-sercurity</artifactId>
-    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.qp.sso</groupId>
     <version>1.0-SNAPSHOT</version>
-    <properties>
-        <my.security.version>1.0-SNAPSHOT</my.security.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
+    <modules>
+        <module>sso-client1</module>
+        <module>sso-client2</module>
+        <module>sso-server</module>
+    </modules>
+    <packaging>pom</packaging>
+    <artifactId>sso-demo</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.8</version>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
         </dependency>
     </dependencies>
 
+    <!--这是一个父项目-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -56,14 +66,6 @@
             </plugin>
         </plugins>
     </build>
-    <modules>
-        <module>my-security-app</module>
-        <module>my-security-authorize</module>
-        <module>my-security-browser</module>
-        <module>my-security-core</module>
-        <module>my-security-demo</module>
-        <module>sso-demo</module>
-    </modules>
 
 
 </project>

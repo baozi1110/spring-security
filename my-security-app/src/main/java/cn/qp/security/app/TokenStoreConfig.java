@@ -17,7 +17,6 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 /**
  * 令牌存取的配置
  *
- * 令牌默认存储到内存中，一旦重启就丢失了，这里配置存储到redis中
  * @author Baozi
  *
  */
@@ -30,6 +29,7 @@ public class TokenStoreConfig {
 	/**
 	 * 声明 redisTokenStore的bean
 	 *
+	 * 令牌默认存储到内存中，一旦重启就丢失了，这里配置存储到redis中
 	 * 只有存在配置项 imooc.security.oauth.tokenStore且值为redis时才生效
 	 */
 	@Bean
