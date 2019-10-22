@@ -8,6 +8,7 @@ import cn.qp.security.core.validate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -127,6 +128,8 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                         securityProperties.getBrowser().getSignOutUrl(),
                         "/user/regist")
                 .permitAll()
+                //访问该接口需要的权限
+                .antMatchers(HttpMethod.GET,"/user/*").hasRole("ADMIN")
                 //任何请求
                 .anyRequest()
                 //都需要身份认证

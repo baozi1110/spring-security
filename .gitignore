@@ -14,3 +14,5 @@
 .idea/sonarlint/issuestore/e/2/
 .idea/sonarlint/issuestore/0/7/
 
+!/.idea/
+.idea

@@ -1,4 +1,0 @@
-
-ssquid:S1699#"PRemove this call from a constructor to the overridable "getRestTemplate" method.(äùìÕûÿÿÿÿ8Å»åËÛ-
-esquid:S001127"FDefine and throw a dedicated exception instead of using a generic one.(ô­Ñ8²É§ÍÛ-
-Rsquid:S22216"4Catch a list of specific exception subtypes instead.(”ı¾8²É§ÍÛ-

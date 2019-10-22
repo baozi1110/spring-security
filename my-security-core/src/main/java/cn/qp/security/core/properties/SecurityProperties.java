@@ -13,6 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "imooc.security")
 @Getter
 @Setter
+// @Component
 public class SecurityProperties {
 	
 	/**
