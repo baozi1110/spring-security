@@ -1,15 +1,15 @@
 package cn.qp.security.browser;
 
-import cn.qp.security.core.authentication.AbstractChannelSecurityConfig;
+import cn.qp.security.core.authentication.FormAuthenticationConfig;
 import cn.qp.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
-import cn.qp.security.core.properties.SecurityConstants;
+import cn.qp.security.core.authorize.AuthorizeConfigManager;
 import cn.qp.security.core.properties.SecurityProperties;
 import cn.qp.security.core.validate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -27,7 +27,7 @@ import javax.sql.DataSource;
  * @date 2019/9/30 10:23
  */
 @Configuration
-public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
+public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
 
@@ -55,18 +55,12 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandler;
 
+    @Autowired
+    private AuthorizeConfigManager authorizeConfigManager;
 
-    /**
-     * 永久令牌存储库
-     */
-    @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
-        tokenRepository.setDataSource(dataSource);
-        //创建存储token的数据库，只能用一次，否则报错
-        // tokenRepository.setCreateTableOnStartup(true);
-        return tokenRepository;
-    }
+    @Autowired
+    private FormAuthenticationConfig formAuthenticationConfig;
+
 
     /**
      * 重写此方法以配置{@link HttpSecurity}
@@ -76,7 +70,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 密码认证相关的配置
-        applyPasswordAuthenticationConfig(http);
+        formAuthenticationConfig.configure(http);
 
         // http.apply()来添加验证码相关或者手机短信相关的配置
         http.apply(validateCodeSecurityConfig)
@@ -115,26 +109,20 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                     //指定成功注销后将删除的cookie名称
                     .deleteCookies("JSESSIONID")
                 .and()
-                //表示以下都是对请求授权的配置
-                .authorizeRequests()
-                //指定当访问该页面时不需要身份认证，如果不加该选项会反复在访问的页面和自定义登录页面间重定向而报错
-                .antMatchers(
-                        SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
-                        SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
-                        securityProperties.getBrowser().getLoginPage(),
-                        SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
-                        securityProperties.getBrowser().getSignUpUrl(),
-                        securityProperties.getBrowser().getSession().getSessionInvalidUrl(),
-                        securityProperties.getBrowser().getSignOutUrl(),
-                        "/user/regist")
-                .permitAll()
-                //访问该接口需要的权限
-                .antMatchers(HttpMethod.GET,"/user/*").hasRole("ADMIN")
-                //任何请求
-                .anyRequest()
-                //都需要身份认证
-                .authenticated()
-                    .and()
                 .csrf().disable();
+
+        authorizeConfigManager.config(http.authorizeRequests());
+    }
+
+    /**
+     * 永久令牌存储库
+     */
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        //创建存储token的数据库，只能用一次，否则报错
+        // tokenRepository.setCreateTableOnStartup(true);
+        return tokenRepository;
     }
 }

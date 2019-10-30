@@ -1,10 +1,13 @@
 
 package cn.qp.security.core.properties;
 
+import lombok.Data;
+
 /**
  * 验证码配置
  * @author BaoZi
  */
+@Data
 public class ValidateCodeProperties {
 	
 	/**

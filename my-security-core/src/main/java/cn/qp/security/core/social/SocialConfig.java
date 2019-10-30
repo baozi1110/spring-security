@@ -1,11 +1,11 @@
 package cn.qp.security.core.social;
 
 import cn.qp.security.core.properties.SecurityProperties;
-import cn.qp.security.core.support.SocialAuthenticationFilterPostProcessor;
+import cn.qp.security.core.social.support.ImoocSpringSocialConfigurer;
+import cn.qp.security.core.social.support.SocialAuthenticationFilterPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
@@ -26,7 +26,6 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableSocial
-@Order(1)
 public class SocialConfig extends SocialConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
@@ -58,6 +57,10 @@ public class SocialConfig extends SocialConfigurerAdapter {
         return repository;
     }
 
+    /**
+     * 社交登录配置类，供浏览器或app模块引入设计登录配置用。
+     * @return
+     */
     @Bean
     public SpringSocialConfigurer imoocSocialSecurityConfig() {
         // 社交登录功能拦截的url，默认/auth，可以自己配置
@@ -71,6 +74,8 @@ public class SocialConfig extends SocialConfigurerAdapter {
     }
 
     /**
+     * 用来处理注册流程的工具类
+     *
      * ProviderSignInUtils有两个作用：
      * （1）从session里获取封装了第三方用户信息的Connection对象
      * （2）将注册的用户信息与第三方用户信息（QQ信息）建立关系并将该关系插入到userconnection表里

@@ -2,7 +2,7 @@ package cn.qp.web.controller;
 
 import cn.qp.dto.User;
 import cn.qp.dto.UserQueryCondition;
-import cn.qp.security.app.social.AppSingUpUtils;
+
 import cn.qp.security.core.properties.SecurityProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.jsonwebtoken.*;
@@ -41,8 +41,8 @@ public class UserController {
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
 
-    @Autowired
-    private AppSingUpUtils appSingUpUtils;
+    // @Autowired
+    // private AppSingUpUtils appSingUpUtils;
 
     @Autowired
     private SecurityProperties securityProperties;
@@ -52,8 +52,8 @@ public class UserController {
         //不管是注册用户还是绑定用户，都会拿到一个用户唯一标识。
         String userId = user.getUsername();
         //将userId传递给springsocial，这个userId是应用自己维护的用户表，与spring无关
-        // providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
-        appSingUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
+        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
+        // appSingUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
 
     }
 

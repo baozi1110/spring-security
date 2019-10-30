@@ -4,6 +4,8 @@
 package cn.qp.dto;
 
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * @author BaoZi
  */
@@ -11,9 +13,9 @@ public class UserQueryCondition {
 
     private String username;
 
-    // @ApiModelProperty(value = "用户年龄起始值")
+    @ApiModelProperty(value = "用户年龄起始值")
     private int age;
-    // @ApiModelProperty(value = "用户年龄终止值")
+    @ApiModelProperty(value = "用户年龄终止值")
     private int ageTo;
 
     private String xxx;

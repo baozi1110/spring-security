@@ -5,7 +5,9 @@ package cn.qp.security.app;
 
 
 import cn.qp.security.app.social.AppSingUpUtils;
-import cn.qp.security.core.support.SocialUserInfo;
+import cn.qp.security.core.properties.SecurityConstants;
+import cn.qp.security.core.social.SocialController;
+import cn.qp.security.core.social.support.SocialUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.social.connect.Connection;
@@ -22,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 @RestController
-public class AppSecurityController {
+public class AppSecurityController extends SocialController {
 	
 	@Autowired
 	private ProviderSignInUtils providerSignInUtils;
@@ -37,19 +39,22 @@ public class AppSecurityController {
 	 * 但是第二次访问session是新的，之前的信息不存在了，所以需要使用 {@link AppSingUpUtils}
 	 * 将请求信息转存到redis中
 	 */
-	@GetMapping("/social/signUp")
+	// @GetMapping("/social/signUp")
+	@GetMapping(SecurityConstants.DEFAULT_SOCIAL_USER_INFO_URL)
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	public SocialUserInfo getSocialUserInfo(HttpServletRequest request) {
-		SocialUserInfo userInfo = new SocialUserInfo();
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(new ServletWebRequest(request));
-		userInfo.setProviderId(connection.getKey().getProviderId());
-		userInfo.setProviderUserId(connection.getKey().getProviderUserId());
-		userInfo.setNickname(connection.getDisplayName());
-		userInfo.setHeadimg(connection.getImageUrl());
-		
 		appSingUpUtils.saveConnectionData(new ServletWebRequest(request), connection.createData());
-		
-		return userInfo;
+		return buildSocialUserInfo(connection);
+
+		// SocialUserInfo userInfo = new SocialUserInfo();
+		// Connection<?> connection = providerSignInUtils.getConnectionFromSession(new ServletWebRequest(request));
+		// userInfo.setProviderId(connection.getKey().getProviderId());
+		// userInfo.setProviderUserId(connection.getKey().getProviderUserId());
+		// userInfo.setNickname(connection.getDisplayName());
+		// userInfo.setHeadimg(connection.getImageUrl());
+		// appSingUpUtils.saveConnectionData(new ServletWebRequest(request), connection.createData());
+		// return userInfo;
 	}
 
 }

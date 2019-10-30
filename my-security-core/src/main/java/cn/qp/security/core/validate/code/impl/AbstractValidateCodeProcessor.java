@@ -27,12 +27,8 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
     @Autowired
     private ValidateCodeRepository validateCodeRepository;
 
-    /*
+    /**
      * 创建校验码
-     *
-     * @see
-     * com.imooc.security.core.validate.code.ValidateCodeProcessor#create(org.
-     * springframework.web.context.request.ServletWebRequest)
      */
     @Override
     public void create(ServletWebRequest request) throws Exception {
@@ -43,9 +39,6 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 
     /**
      * 选用匹配的验证代码生成器生成校验码
-     *
-     * @param request
-     * @return
      */
     @SuppressWarnings("unchecked")
     private C generate(ServletWebRequest request) {
@@ -82,9 +75,6 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 
     /**
      * 根据请求的url获取校验码的类型
-     *
-     * @param request
-     * @return
      */
     private ValidateCodeType getValidateCodeType(ServletWebRequest request) {
         String type = StringUtils.substringBefore(getClass().getSimpleName(), "CodeProcessor");

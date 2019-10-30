@@ -59,7 +59,7 @@ public class AppSingUpUtils {
 	 * @param request 包含deviceId的请求信息，
 	 * @return 根据设备id生成的key imooc:security:social.connect.xxx
 	 */
-	private static String getKey(WebRequest request) {
+	private  String getKey(WebRequest request) {
 		String deviceId = request.getHeader("deviceId");
 		if (StringUtils.isBlank(deviceId)) {
 			throw new AppSecretException("设备id参数不能为空");

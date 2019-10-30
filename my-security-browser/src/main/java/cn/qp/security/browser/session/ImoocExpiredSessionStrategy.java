@@ -1,5 +1,6 @@
 package cn.qp.security.browser.session;
 
+import cn.qp.security.core.properties.SecurityProperties;
 import org.springframework.security.web.session.SessionInformationExpiredEvent;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 
@@ -13,10 +14,10 @@ import java.io.IOException;
 public class ImoocExpiredSessionStrategy extends AbstractSessionStrategy implements SessionInformationExpiredStrategy {
 
     /**
-     * @param invalidSessionUrl 当session失效时跳转的地址
+     * @param securityProperties 当session失效时跳转的地址
      */
-    public ImoocExpiredSessionStrategy(String invalidSessionUrl) {
-        super(invalidSessionUrl);
+    public ImoocExpiredSessionStrategy(SecurityProperties securityProperties) {
+        super(securityProperties);
     }
 
 

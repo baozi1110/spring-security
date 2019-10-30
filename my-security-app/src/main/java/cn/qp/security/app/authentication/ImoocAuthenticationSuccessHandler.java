@@ -3,7 +3,6 @@
  */
 package cn.qp.security.app.authentication;
 
-import cn.qp.security.core.properties.SecurityProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
@@ -28,6 +27,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * APP环境下认证成功处理器
+ * 	重构OAuth2的默认登录方式，自定义创建OAuth2AccessToken对象的流程
  * @author BaoZi
  */
 @Component("imoocAuthenticationSuccessHandler")
@@ -38,8 +38,6 @@ public class ImoocAuthenticationSuccessHandler extends SavedRequestAwareAuthenti
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	@Autowired
-	private SecurityProperties securityProperties;
 
 	@Autowired
 	private ClientDetailsService clientDetailsService;
@@ -56,11 +54,9 @@ public class ImoocAuthenticationSuccessHandler extends SavedRequestAwareAuthenti
 
 		//获取请求头中的Authorization的值
 		String header = request.getHeader("Authorization");
-
 		if (header == null || !header.startsWith("Basic ")) {
 			throw new UnapprovedClientAuthenticationException("请求头中无client信息");
 		}
-
 		String[] tokens = extractAndDecodeHeader(header, request);
 		assert tokens.length == 2;
 		// 解码后得到 clientId 和 clientSecret 的值
@@ -78,6 +74,7 @@ public class ImoocAuthenticationSuccessHandler extends SavedRequestAwareAuthenti
 
 		// 封装获取令牌请求的除了client外的其他信息
 		// 第一个参数实际传入的是一个Map，保存的Authentication信息，因为在onAuthenticationSuccess方法中已经作为参数传入了，所以传个空值
+		// 第四个参数在标准四种模式中传入 password等固定值，现在是自定义流程所以传入自定义的值即可
 		TokenRequest tokenRequest = new TokenRequest(MapUtils.EMPTY_MAP, clientId, clientDetails.getScope(), "custom");
 
 		// 整合了ClientDetails和TokenRequest中的信息

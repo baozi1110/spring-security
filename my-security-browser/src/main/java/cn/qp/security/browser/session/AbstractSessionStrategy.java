@@ -3,6 +3,7 @@
  */
 package cn.qp.security.browser.session;
 
+import cn.qp.security.core.properties.SecurityProperties;
 import cn.qp.security.core.support.SimpleResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;
@@ -31,6 +32,10 @@ public class AbstractSessionStrategy {
 	 */
 	private String destinationUrl;
 	/**
+	 * 系统配置信息
+	 */
+	private SecurityProperties securityPropertie;
+	/**
 	 * 重定向策略
 	 */
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
@@ -38,19 +43,28 @@ public class AbstractSessionStrategy {
 	 * 跳转前是否创建新的session
 	 */
 	private boolean createNewSession = true;
-	
+
 	private ObjectMapper objectMapper = new ObjectMapper();
 
 
-	public AbstractSessionStrategy(String invalidSessionUrl) {
+	public AbstractSessionStrategy(SecurityProperties securityPropertie) {
+		String invalidSessionUrl = securityPropertie.getBrowser().getSession().getSessionInvalidUrl();
 		Assert.isTrue(UrlUtils.isValidRedirectUrl(invalidSessionUrl), "url must start with '/' or with 'http(s)'");
+		Assert.isTrue(StringUtils.endsWithIgnoreCase(invalidSessionUrl, ".html"), "url must end with '.html'");
 		this.destinationUrl = invalidSessionUrl;
+		this.securityPropertie = securityPropertie;
 	}
 
-	/**
-	 * 会话无效时的默认处理逻辑
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.springframework.security.web.session.InvalidSessionStrategy#
+	 * onInvalidSessionDetected(javax.servlet.http.HttpServletRequest,
+	 * javax.servlet.http.HttpServletResponse)
 	 */
 	protected void onSessionInvalid(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		logger.info("session失效");
 
 		if (createNewSession) {
 			request.getSession();
@@ -60,16 +74,21 @@ public class AbstractSessionStrategy {
 		String targetUrl;
 
 		if (StringUtils.endsWithIgnoreCase(sourceUrl, ".html")) {
-			targetUrl = destinationUrl+".html";
-			logger.info("session失效,跳转到"+targetUrl);
+			if(StringUtils.equals(sourceUrl, securityPropertie.getBrowser().getSignInPage())
+					|| StringUtils.equals(sourceUrl, securityPropertie.getBrowser().getSignOutUrl())){
+				targetUrl = sourceUrl;
+			}else{
+				targetUrl = destinationUrl;
+			}
+			logger.info("跳转到:"+targetUrl);
 			redirectStrategy.sendRedirect(request, response, targetUrl);
-		}else{
+		} else {
 			Object result = buildResponseContent(request);
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 			response.setContentType("application/json;charset=UTF-8");
 			response.getWriter().write(objectMapper.writeValueAsString(result));
 		}
-		
+
 	}
 
 	/**
@@ -78,7 +97,7 @@ public class AbstractSessionStrategy {
 	 */
 	protected Object buildResponseContent(HttpServletRequest request) {
 		String message = "session已失效";
-		if(isConcurrency()){
+		if (isConcurrency()) {
 			message = message + "，有可能是并发登录导致的";
 		}
 		return new SimpleResponse(message);
@@ -86,6 +105,7 @@ public class AbstractSessionStrategy {
 
 	/**
 	 * session失效是否是并发导致的
+	 *
 	 * @return
 	 */
 	protected boolean isConcurrency() {
@@ -104,5 +124,5 @@ public class AbstractSessionStrategy {
 	public void setCreateNewSession(boolean createNewSession) {
 		this.createNewSession = createNewSession;
 	}
-	
+
 }

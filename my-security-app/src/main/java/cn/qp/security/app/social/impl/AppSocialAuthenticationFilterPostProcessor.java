@@ -1,10 +1,9 @@
 package cn.qp.security.app.social.impl;
 
-import cn.qp.security.core.support.SocialAuthenticationFilterPostProcessor;
+import cn.qp.security.core.social.support.SocialAuthenticationFilterPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.social.security.SocialAuthenticationFilter;
-import org.springframework.stereotype.Component;
 
 /**
  * 应用社交认证过滤器后处理器
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
  * 将app的认证成功后处理器设置成返回令牌；信息的成功处理器
  * @author BaoZi
  */
-@Component
+// @Component
 public class AppSocialAuthenticationFilterPostProcessor implements SocialAuthenticationFilterPostProcessor {
 
     @Autowired

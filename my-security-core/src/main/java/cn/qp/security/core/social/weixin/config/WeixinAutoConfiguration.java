@@ -2,7 +2,7 @@ package cn.qp.security.core.social.weixin.config;
 
 import cn.qp.security.core.properties.SecurityProperties;
 import cn.qp.security.core.properties.WeixinProperties;
-import cn.qp.security.core.social.ImoocConnectView;
+import cn.qp.security.core.social.view.ImoocConnectView;
 import cn.qp.security.core.social.weixin.connect.WeixinConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
